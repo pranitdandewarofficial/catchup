@@ -1079,5 +1079,135 @@ export const DATA: ExamTrack[] = [
         ]
       }
     ]
+  },
+  // MAHARASHTRA HSC CS PAPER I
+  {
+    id: 'hsc-cs1',
+    label: 'HSC 12th CS Paper I',
+    tag: 'HSC-CS1',
+    accent: '#8b5cf6',
+    note: 'Maharashtra State Board HSC Science - Computer Science Paper I',
+    groups: [
+      {
+        subject: 'Computer Science',
+        chapters: [
+          {
+            name: 'Introduction to C++',
+            summary: 'Fundamentals of C++ programming, data types, operators, control structures, functions. Foundation for object-oriented programming.',
+            keyConcepts: ['Data Types', 'Operators', 'Control Structures', 'Functions', 'Arrays', 'Pointers'],
+            mustKnow: ['int, float, char, bool data types', 'if-else, switch, for, while, do-while', 'Function declaration and definition', 'Array declaration and initialization', 'Pointer basics and dereferencing'],
+            formulas: ['sizeof(data_type)', 'array_size = sizeof(array)/sizeof(element)'],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'High'
+          },
+          {
+            name: 'Object-Oriented Programming',
+            summary: 'Classes, objects, inheritance, polymorphism, encapsulation, abstraction. Core OOP concepts in C++.',
+            keyConcepts: ['Classes and Objects', 'Constructors and Destructors', 'Inheritance', 'Polymorphism', 'Encapsulation', 'Abstraction'],
+            mustKnow: ['Class definition with data members and member functions', 'Constructor types: default, parameterized, copy', 'Inheritance types: single, multiple, multilevel', 'Function overloading and overriding', 'Access specifiers: public, private, protected'],
+            formulas: [],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'Very High'
+          },
+          {
+            name: 'Data Structures',
+            summary: 'Arrays, linked lists, stacks, queues, trees, graphs. Fundamental data organization and manipulation.',
+            keyConcepts: ['Arrays', 'Linked Lists', 'Stacks', 'Queues', 'Trees', 'Graphs'],
+            mustKnow: ['Array operations: insertion, deletion, traversal', 'Linked list: node structure, insertion, deletion', 'Stack: LIFO, push, pop operations', 'Queue: FIFO, enqueue, dequeue', 'Tree: binary tree, traversal (inorder, preorder, postorder)'],
+            formulas: ['Time complexity: O(n) for linear search', 'Space complexity: O(n) for array'],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'High'
+          },
+          {
+            name: 'Algorithm Design',
+            summary: 'Sorting algorithms, searching algorithms, algorithm complexity, recursion. Problem-solving techniques.',
+            keyConcepts: ['Sorting Algorithms', 'Searching Algorithms', 'Recursion', 'Time Complexity', 'Space Complexity'],
+            mustKnow: ['Bubble sort, selection sort, insertion sort', 'Quick sort, merge sort', 'Linear search, binary search', 'Recursion: base case and recursive case', 'Big O notation: O(1), O(log n), O(n), O(n²)'],
+            formulas: ['Binary search: O(log n)', 'Bubble sort: O(n²)', 'Quick sort: O(n log n) average'],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'High'
+          },
+          {
+            name: 'Database Management',
+            summary: 'Database concepts, SQL queries, normalization, ER diagrams. Data storage and retrieval systems.',
+            keyConcepts: ['Database Concepts', 'SQL Queries', 'Normalization', 'ER Diagrams', 'Keys'],
+            mustKnow: ['SELECT, INSERT, UPDATE, DELETE queries', 'Primary key, foreign key, candidate key', '1NF, 2NF, 3NF normalization', 'Entity-Relationship model', 'JOIN operations: INNER, LEFT, RIGHT'],
+            formulas: [],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'Medium'
+          }
+        ]
+      }
+    ]
+  },
+  // MAHARASHTRA HSC CS PAPER II
+  {
+    id: 'hsc-cs2',
+    label: 'HSC 12th CS Paper II',
+    tag: 'HSC-CS2',
+    accent: '#a855f7',
+    note: 'Maharashtra State Board HSC Science - Computer Science Paper II',
+    groups: [
+      {
+        subject: 'Computer Science',
+        chapters: [
+          {
+            name: 'HTML and Web Technologies',
+            summary: 'HTML structure, tags, forms, CSS basics, web development fundamentals. Building web pages and applications.',
+            keyConcepts: ['HTML Structure', 'HTML Tags', 'Forms', 'CSS Basics', 'Web Development'],
+            mustKnow: ['HTML document structure: <!DOCTYPE>, <html>, <head>, <body>', 'Common tags: <p>, <h1>-<h6>, <a>, <img>, <div>, <span>', 'Form elements: <input>, <select>, <textarea>, <button>', 'CSS selectors: element, class, id', 'CSS properties: color, background, font, margin, padding'],
+            formulas: [],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'Medium'
+          },
+          {
+            name: 'JavaScript Programming',
+            summary: 'JavaScript syntax, DOM manipulation, events, functions, objects. Client-side scripting for web interactivity.',
+            keyConcepts: ['JavaScript Syntax', 'Variables and Data Types', 'Functions', 'DOM Manipulation', 'Events', 'Objects'],
+            mustKnow: ['var, let, const declarations', 'Function declaration and arrow functions', 'document.getElementById(), querySelector()', 'Event listeners: onclick, onchange, onsubmit', 'Object creation and property access'],
+            formulas: [],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'High'
+          },
+          {
+            name: 'Networking Concepts',
+            summary: 'Network types, protocols, TCP/IP model, internet services, network security. Communication systems.',
+            keyConcepts: ['Network Types', 'Protocols', 'TCP/IP Model', 'Internet Services', 'Network Security'],
+            mustKnow: ['LAN, MAN, WAN, PAN', 'TCP, IP, HTTP, FTP, SMTP protocols', 'OSI 7-layer model', 'IP addressing: IPv4, IPv6', 'Firewalls, encryption, authentication'],
+            formulas: [],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'Medium'
+          },
+          {
+            name: 'Cyber Security',
+            summary: 'Security threats, viruses, malware, encryption, authentication, ethical hacking. Protecting digital assets.',
+            keyConcepts: ['Security Threats', 'Viruses and Malware', 'Encryption', 'Authentication', 'Ethical Hacking'],
+            mustKnow: ['Types of malware: virus, worm, trojan, ransomware', 'Symmetric and asymmetric encryption', 'Digital signatures and certificates', 'Firewall types: packet filtering, stateful inspection', 'Phishing, spoofing, social engineering'],
+            formulas: [],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'Medium'
+          },
+          {
+            name: 'Emerging Technologies',
+            summary: 'Artificial intelligence, machine learning, cloud computing, IoT, blockchain. Modern technology trends.',
+            keyConcepts: ['Artificial Intelligence', 'Machine Learning', 'Cloud Computing', 'Internet of Things', 'Blockchain'],
+            mustKnow: ['AI: definition, applications, types', 'ML: supervised, unsupervised, reinforcement learning', 'Cloud: IaaS, PaaS, SaaS models', 'IoT: sensors, connectivity, applications', 'Blockchain: distributed ledger, cryptocurrencies'],
+            formulas: [],
+            deleted: [],
+            deletedChapter: false,
+            weightage: 'Low'
+          }
+        ]
+      }
+    ]
   }
 ];
