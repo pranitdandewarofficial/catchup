@@ -8,6 +8,19 @@ export interface Chapter {
   deleted: string[];
   deletedChapter: boolean;
   weightage: string;
+  // Enhanced fields (optional for backward compatibility)
+  detailedConcepts?: string[];
+  definitions?: string[];
+  laws?: string[];
+  theorems?: string[];
+  derivations?: string[];
+  solvedExamples?: string[];
+  misconceptions?: string[];
+  exceptions?: string[];
+  prerequisites?: string[];
+  relatedChapters?: string[];
+  revisionNotes?: string[];
+  practiceQuestions?: string[];
 }
 
 export interface SubjectGroup {
@@ -22,6 +35,96 @@ export interface ExamTrack {
   accent: string;
   note: string;
   groups: SubjectGroup[];
+}
+
+// Study System Data Structures
+export type MasteryLevel = 'notStarted' | 'learning' | 'practicing' | 'revising' | 'testReady' | 'mastered';
+
+export type MistakeCategory = 'conceptGap' | 'calculationError' | 'formulaError' | 'misreading' | 'timeManagement';
+
+export type TaskType = 'lecture' | 'conceptStudy' | 'problemPractice' | 'revision' | 'mockTest' | 'writtenAnswer';
+
+export type TaskPriority = 'mustDo' | 'shouldDo' | 'bonus';
+
+export interface DailyTask {
+  id: string;
+  date: string; // YYYY-MM-DD
+  subject: string;
+  chapter?: string;
+  type: TaskType;
+  priority: TaskPriority;
+  title: string;
+  description: string;
+  estimatedMinutes: number;
+  completed: boolean;
+  completedAt?: string;
+  carriedForward: boolean;
+}
+
+export interface Goal {
+  id: string;
+  type: 'iitBombayCSE' | 'hsc95Plus';
+  title: string;
+  description: string;
+  targetDate?: string;
+  progress: number; // 0-100
+  milestones: GoalMilestone[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GoalMilestone {
+  id: string;
+  title: string;
+  targetDate?: string;
+  completed: boolean;
+  completedAt?: string;
+  metrics: Record<string, number>;
+}
+
+export interface Mistake {
+  id: string;
+  date: string;
+  subject: string;
+  chapter: string;
+  questionId?: string;
+  category: MistakeCategory;
+  description: string;
+  correctApproach: string;
+  reviewed: boolean;
+  reviewCount: number;
+  lastReviewed?: string;
+}
+
+export interface MockTestResult {
+  id: string;
+  date: string;
+  subject: string;
+  totalQuestions: number;
+  correct: number;
+  incorrect: number;
+  unanswered: number;
+  timeTaken: number; // minutes
+  accuracy: number; // percentage
+  chapterPerformance: Record<string, { correct: number; total: number }>;
+  weakTopics: string[];
+  notes?: string;
+}
+
+export interface WeeklyReview {
+  id: string;
+  weekStart: string; // YYYY-MM-DD
+  weekEnd: string;
+  tasksPlanned: number;
+  tasksCompleted: number;
+  chaptersLearned: string[];
+  chaptersRevised: string[];
+  mockTestsTaken: number;
+  averageAccuracy: number;
+  weakSubjects: string[];
+  recurringMistakes: string[];
+  revisionBacklog: string[];
+  nextWeekPriorities: string[];
 }
 
 export const DATA: ExamTrack[] = [
@@ -84,7 +187,75 @@ export const DATA: ExamTrack[] = [
             formulas: ['τ = Iα', 'L = Iω', 'KE_rot = ½Iω²', 'I = Σmr²', 'I = I_cm + Md²'],
             deleted: [],
             deletedChapter: false,
-            weightage: 'Very High'
+            weightage: 'Very High',
+            detailedConcepts: [
+              'Rigid Body: A body in which distance between any two particles remains constant',
+              'Axis of Rotation: Fixed line about which all particles perform circular motion',
+              'Angular Displacement (θ): Angle rotated by body, measured in radians',
+              'Angular Velocity (ω): Rate of change of angular displacement, ω = dθ/dt',
+              'Angular Acceleration (α): Rate of change of angular velocity, α = dω/dt',
+              'Moment of Inertia (I): Rotational analogue of mass, depends on mass distribution',
+              'Radius of Gyration (k): Distance from axis where entire mass can be concentrated to give same I, I = Mk²',
+              'Torque (τ): Rotational analogue of force, τ = r × F',
+              'Angular Momentum (L): Rotational analogue of linear momentum, L = Iω',
+              'Rolling Motion: Combination of translational and rotational motion'
+            ],
+            definitions: [
+              'Moment of Inertia: I = Σmᵢrᵢ² where rᵢ is perpendicular distance from axis',
+              'Torque: τ = rFsinθ where θ is angle between r and F',
+              'Angular Momentum: L = r × p = Iω',
+              'Radius of Gyration: k = √(I/M)',
+              'Rolling without slipping: v_cm = Rω and a_cm = Rα'
+            ],
+            laws: [
+              'Newton\'s Second Law for Rotation: τ_net = Iα',
+              'Conservation of Angular Momentum: If τ_ext = 0, then L = constant',
+              'Work-Energy Theorem for Rotation: W_net = ΔKE_rot = ½Iω₂² - ½Iω₁²',
+              'Parallel Axis Theorem: I = I_cm + Md²',
+              'Perpendicular Axis Theorem: I_z = I_x + I_y (for planar bodies only)'
+            ],
+            derivations: [
+              'Moment of Inertia of Ring: I = ∫dm·R² = MR² (all mass at distance R)',
+              'Moment of Inertia of Disc: I = ∫₀ᴿ (2πr·dr·σ)·r² = ½MR²',
+              'Moment of Inertia of Solid Sphere: I = ⅖MR²',
+              'Rolling KE: KE_total = ½Mv² + ½Iω² = ½Mv²(1 + k²/R²)',
+              'Acceleration on incline: a = gsinθ/(1 + k²/R²)'
+            ],
+            solvedExamples: [
+              'Q: Find MI of uniform rod about center. A: I = ML²/12 (integrate dm·x² from -L/2 to L/2)',
+              'Q: Disc rolls without slipping. Find velocity of topmost point. A: v_top = v_cm + Rω = 2v_cm',
+              'Q: Two discs collide and stick. Find final angular velocity. A: Use conservation of L: I₁ω₁ = (I₁+I₂)ω₂',
+              'Q: Find acceleration of cylinder rolling down incline. A: a = gsinθ/(1 + I/MR²) = ⅔gsinθ'
+            ],
+            misconceptions: [
+              'MI depends only on mass - WRONG: It depends on mass distribution (shape and axis)',
+              'Rolling means no friction - WRONG: Static friction is essential for rolling without slipping',
+              'Angular momentum is always conserved - WRONG: Only when net external torque is zero',
+              'Perpendicular axis theorem applies to 3D bodies - WRONG: Only for planar/laminar bodies',
+              'Torque and force are same - WRONG: Torque is r × F, depends on point of application'
+            ],
+            exceptions: [
+              'MI of thin rod about end: ML²/3 (not ML²/12)',
+              'MI of hollow sphere: ⅔MR² (not ⅖MR²)',
+              'MI of cylindrical shell: MR² (not ½MR²)',
+              'For non-uniform bodies, must integrate: I = ∫r²dm',
+              'Perpendicular axis theorem fails for 3D bodies'
+            ],
+            prerequisites: ['Laws of Motion', 'Work Energy and Power', 'Center of Mass'],
+            relatedChapters: ['Gravitation', 'Oscillations', 'Mechanical Properties of Solids'],
+            revisionNotes: [
+              'Standard MI values: Ring=MR², Disc=½MR², Sphere=⅖MR², Rod(center)=ML²/12',
+              'Rolling condition: v = Rω (no slipping)',
+              'Total KE in rolling: ½Mv²(1 + k²/R²)',
+              'Conservation of L: I₁ω₁ = I₂ω₂ (when τ_ext = 0)',
+              'Torque: τ = rFsinθ = Iα'
+            ],
+            practiceQuestions: [
+              'Calculate MI of uniform circular disc about tangent in its plane',
+              'A solid sphere rolls down an incline. Find ratio of translational to rotational KE',
+              'Two identical discs rotating in opposite directions are brought in contact. Find final state',
+              'Find angular acceleration of a wheel when torque of 10 Nm is applied, I = 2 kg·m²'
+            ]
           },
           {
             name: 'Gravitation',

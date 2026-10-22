@@ -5,6 +5,10 @@ import { MarkdownRenderer } from './components/MarkdownRenderer';
 import { Onboarding } from './components/Onboarding';
 import { Profile } from './components/Profile';
 import { PeriodicTable } from './components/PeriodicTable';
+import { DailyMission } from './components/DailyMission';
+import { GoalTracker } from './components/GoalTracker';
+import { MistakeBook } from './components/MistakeBook';
+import { WeeklyReview } from './components/WeeklyReview';
 
 // ─── Firebase & AI ───────────────────────────────────────────────────────────
 import { signInWithGoogle, signOutUser, onAuthChange, saveProgress, loadProgress } from './firebase';
@@ -2169,6 +2173,8 @@ export default function App() {
   const [user, setUser] = useState<any>(null);
   const [showProfile, setShowProfile] = useState(false);
   const [done, setDone] = useState<Record<string, boolean>>({});
+  const [quizScores, setQuizScores] = useState<Record<string, number>>({});
+  const [mistakes, setMistakes] = useState<any[]>([]);
   const [activeExam, setActiveExam] = useState<string>('jee');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchAll, setSearchAll] = useState(false);
@@ -2176,7 +2182,7 @@ export default function App() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [syncStatus, setSyncStatus] = useState<'local' | 'syncing' | 'synced'>('local');
-  const [view, setView] = useState<'dashboard' | 'exam' | 'formulas' | 'flashcards' | 'random' | 'ai-buddy' | 'ai-quiz' | 'periodic-table'>('dashboard');
+  const [view, setView] = useState<'dashboard' | 'exam' | 'formulas' | 'flashcards' | 'random' | 'ai-buddy' | 'ai-quiz' | 'periodic-table' | 'daily-mission' | 'goals' | 'mistakes' | 'weekly-review'>('dashboard');
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -2185,6 +2191,12 @@ export default function App() {
     try {
       const saved = localStorage.getItem('catchup:syllabus:v2:done');
       if (saved) setDone(JSON.parse(saved));
+      
+      const savedScores = localStorage.getItem('catchup:quizScores');
+      if (savedScores) setQuizScores(JSON.parse(savedScores));
+      
+      const savedMistakes = localStorage.getItem('catchup:mistakes');
+      if (savedMistakes) setMistakes(JSON.parse(savedMistakes));
     } catch {}
   }, []);
 
@@ -2457,6 +2469,22 @@ export default function App() {
                 {Icons.atom}
                 <span>Periodic Table</span>
               </button>
+              <button onClick={() => { setView('daily-mission'); window.scrollTo(0, 0); }} className={`nav-item ${view === 'daily-mission' ? 'active' : ''}`} style={view === 'daily-mission' ? { color: '#10b981' } : {}}>
+                {Icons.clock}
+                <span>Daily Mission</span>
+              </button>
+              <button onClick={() => { setView('goals'); window.scrollTo(0, 0); }} className={`nav-item ${view === 'goals' ? 'active' : ''}`} style={view === 'goals' ? { color: '#2563eb' } : {}}>
+                {Icons.trophy}
+                <span>Goals</span>
+              </button>
+              <button onClick={() => { setView('mistakes'); window.scrollTo(0, 0); }} className={`nav-item ${view === 'mistakes' ? 'active' : ''}`} style={view === 'mistakes' ? { color: '#dc2626' } : {}}>
+                {Icons.book}
+                <span>Mistake Book</span>
+              </button>
+              <button onClick={() => { setView('weekly-review'); window.scrollTo(0, 0); }} className={`nav-item ${view === 'weekly-review' ? 'active' : ''}`} style={view === 'weekly-review' ? { color: '#8b5cf6' } : {}}>
+                {Icons.trending}
+                <span>Weekly Review</span>
+              </button>
             </div>
           </div>
         </div>
@@ -2497,6 +2525,16 @@ export default function App() {
           <AIQuizGenerator />
         ) : view === 'periodic-table' ? (
           <PeriodicTable />
+        ) : view === 'daily-mission' ? (
+          <DailyMission done={done} onTaskComplete={(taskId) => {
+            setToast({ message: 'Task completed! 🎉', type: 'success' });
+          }} />
+        ) : view === 'goals' ? (
+          <GoalTracker done={done} quizScores={quizScores} />
+        ) : view === 'mistakes' ? (
+          <MistakeBook />
+        ) : view === 'weekly-review' ? (
+          <WeeklyReview done={done} quizScores={quizScores} mistakes={mistakes} />
         ) : searchAll && searchQuery ? (
           <div className="fade-in">
             <p className="text-sm mb-6" style={{ color: 'var(--text-tertiary)' }}>
