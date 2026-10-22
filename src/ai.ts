@@ -6,12 +6,12 @@ let genAI: GoogleGenerativeAI | null = null;
 let model: any = null;
 
 export const GEMINI_MODELS = [
-  { id: 'gemini-3.5-pro', name: 'Gemini 3.5 Pro', tier: 'premium' },
-  { id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash', tier: 'standard' },
-  { id: 'gemini-3.0-pro', name: 'Gemini 3.0 Pro', tier: 'premium' },
-  { id: 'gemini-3.0-flash', name: 'Gemini 3.0 Flash', tier: 'standard' },
-  { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', tier: 'premium' },
-  { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', tier: 'standard' }
+  { id: 'gemini-3.5-pro', name: 'Gemini 3.5 Pro', tier: 'premium', desc: 'Most advanced reasoning' },
+  { id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash', tier: 'standard', desc: 'Ultra fast & smart' },
+  { id: 'gemini-3.0-pro', name: 'Gemini 3.0 Pro', tier: 'premium', desc: 'Most powerful reasoning' },
+  { id: 'gemini-3.0-flash', name: 'Gemini 3.0 Flash', tier: 'standard', desc: 'Fast & capable' },
+  { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', tier: 'premium', desc: 'Stable & reliable' },
+  { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', tier: 'standard', desc: 'Quick responses' }
 ];
 
 export const initializeAI = (key: string, modelId?: string) => {
